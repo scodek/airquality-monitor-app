@@ -5,9 +5,9 @@
   "main": "app-server.js",
   "scripts": {
     "start": "nodemon --exec babel-node app-server.js",
-    "dev": "node mongodbConnection.js && npm run start",
+    "server": "node mongodbConnection.js && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd airquality-monitor-app-client && npm start"
+    "client": "cd ../airquality-monitor-app-client && npm start"
   },
   "repository": {
     "type": "git",
