@@ -1,0 +1,47 @@
+@import '~antd/dist/antd.css';
+.flex-container {
+  display: flex;
+  margin-top:100px;
+}
+
+.flex-child {
+  flex: 1;
+  border: 2px solid yellow;
+}  
+
+.flex-child:first-child {
+  margin-right: 20px;
+}
+
+.img-style{
+  height: 100%;
+  width:100%;
+}
+
+.sticky-header{
+    height:'100px';
+    position: 'sticky';
+    top: '0px';
+
+}
+
+.about-text{
+  background-color: aliceblue;
+  padding:10px;
+}
+
+.about-desc{
+  display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.table-row{
+  font-size: 18px;
+}
+
+.ant-table-title{
+  font-size:20px;
+  font-weight: bolder;
+}
+
