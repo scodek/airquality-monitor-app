@@ -2,10 +2,8 @@ import { Table } from 'antd';
 import React, {FC,useState, useEffect} from 'react';
 import {TableColumns,ResponseData} from '../dataModel/tableDataModel';
 import {getInitialData,getPageSpecificData} from '../Services/restService';
-import {loadingNotificationComponent} from '../Components/loadingNotificationComponent';
 import { AlertEnums } from '../enums/AlertEnums';
-
-
+import {loadingNotification} from '../Utils/loadingNotification';
 
 
 export const AirQualityReportComponent:FC = () => {
@@ -20,7 +18,7 @@ export const AirQualityReportComponent:FC = () => {
         if(response.statusText === 'OK'){
           console.log("response.data= ",response.data);
           processResponseData(response.data);
-          //showNotification('success');
+          showNotification('success');
         }else{
           throw new Error("data cannot be fetched");
         }
@@ -35,12 +33,12 @@ export const AirQualityReportComponent:FC = () => {
   const showNotification = (notifyType: string, err?:any) =>{
     console.log('this is called');
     if(notifyType === 'success'){
-      loadingNotificationComponent(AlertEnums.SUCCESS, 'success', "Successfully loaded data");
+      loadingNotification(AlertEnums.SUCCESS, 'success', "Successfully loaded data");
     }else if(notifyType === 'error'){
       const statusEnum = AlertEnums.ERROR;
       const status= err?.response?.status ? err.response.status: 'Error';
       const statusText = err?.response?.msg ? err.response.msg : err.toString();
-      loadingNotificationComponent(statusEnum, status, statusText);
+      loadingNotification(statusEnum, status, statusText);
     }
     
   }
@@ -81,7 +79,8 @@ export const AirQualityReportComponent:FC = () => {
           title: 'Country Flag',
           dataIndex: 'flag',
           key: 'flag',
-          render: (imageLink:string) => {
+          // eslint-disable-next-line react/display-name
+          render:(imageLink:string) => {
            return(<img src={imageLink} width="30" height="20" alt="image"/>)
           }
         },
@@ -103,6 +102,7 @@ export const AirQualityReportComponent:FC = () => {
         .then(response => {
           if(response.statusText === "OK"){
             processResponseData(response.data);
+            //console.log(response.data);
             //showNotification('success');
           }else{
             throw new Error("data cannot be fetched");
@@ -116,13 +116,13 @@ export const AirQualityReportComponent:FC = () => {
 
       
     return(
-        <div style={{height: '75vh'}}>
+        <div style={{height: '73vh'}}>
         
-            <Table 
+            <Table
             dataSource={tableData} 
             columns={columns}
             bordered
-            scroll={{ y: 'calc(75vh - 4em)' }}
+            scroll={{ y: 'calc(73vh - 4em)' }}
             title={() => 'Countrywise Air-quality report'}
             pagination={{defaultCurrent:1, pageSize: 20,total:100,onChange:(pageNumber) => callPageChange(pageNumber) }}
             rowClassName={(record, index) => "table-row"}

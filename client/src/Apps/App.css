@@ -6,7 +6,7 @@
 
 .flex-child {
   flex: 1;
-  border: 2px solid yellow;
+  border: 2px solid #4db8ff;
 }  
 
 .flex-child:first-child {
@@ -27,21 +27,41 @@
 
 .about-text{
   background-color: aliceblue;
-  padding:10px;
+  padding:12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.about-desc{
-  display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
 
 .table-row{
   font-size: 18px;
+ 
 }
 
 .ant-table-title{
   font-size:20px;
   font-weight: bolder;
+}
+
+th.ant-table-cell{
+  color:#004d99 !important;
+  font-size: 18px;
+  
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.ant-layout-header{
+  height : 85px !important;
+  padding-top: 16px;
+  font-size: 20px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.lang-auth-div{
+  display: flex;
+  float: right;
+  width: 100px;
+  justify-content: space-between;
 }
 

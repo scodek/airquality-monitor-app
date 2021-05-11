@@ -1,7 +1,7 @@
 import { notification } from 'antd';
 import { AlertEnums } from '../enums/AlertEnums';
 
-export const loadingNotificationComponent = (statusEnum: AlertEnums, status?:any, statusText?:string) => {
+export const loadingNotification = (statusEnum: AlertEnums, status?:any, statusText?:string) => {
     if (statusEnum === AlertEnums.SUCCESS) {
         notification.success({
             message: status ? status : 'Success',

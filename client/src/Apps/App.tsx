@@ -5,13 +5,13 @@ import {AuthenticatedRoute} from '../Components/AuthenticatedRoute';
 import './App.css';
 
 function App() {
-  //const [isAuthenticated,setIsAuthenticated] = useState(true);
+const [isAuthenticated,setIsAuthenticated] = useState<boolean>(true);
 
   return (
     
     <BrowserRouter>
       <Switch>
-          <AuthenticatedRoute/> 
+          <AuthenticatedRoute isAuthenticated={isAuthenticated}/> 
       </Switch>
    </BrowserRouter>
    
