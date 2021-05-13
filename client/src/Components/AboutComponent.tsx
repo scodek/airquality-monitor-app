@@ -9,6 +9,8 @@ export const AboutComponent:FC = () => {
         width:'100%',
     };
 
+    console.log("hello");
+
     return (
         <div className="flex-container">
 

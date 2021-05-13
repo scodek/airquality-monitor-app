@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Spin} from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
-export const LoadingComponent: React.FC = () => {
+export const LoadingComponent:FC = () => {
     const loadingIcon = <LoadingOutlined style={{ fontSize: 50 }} spin={true} />;
     console.log("suspense working");
 

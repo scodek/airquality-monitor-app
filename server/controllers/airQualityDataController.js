@@ -26,6 +26,7 @@ const sendAirqualityData = async(req, res, next) => {
                        .collection(process.env.COLLECTION_NAME)
                        .find(findClause).limit(20);
         const returnedData = await cursor.toArray();
+        //console.log("returnedData =",returnedData);
         return res.send(returnedData);
  
     } catch (e) {

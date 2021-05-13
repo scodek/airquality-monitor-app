@@ -4,11 +4,14 @@ import {TableColumns,ResponseData} from '../dataModel/tableDataModel';
 import {getInitialData,getPageSpecificData} from '../Services/restService';
 import { AlertEnums } from '../enums/AlertEnums';
 import {loadingNotification} from '../Utils/loadingNotification';
+import { useTranslation } from 'react-i18next';
+
 
 
 export const AirQualityReportComponent:FC = () => {
 
   const [tableData,setTableData] = useState([] as TableColumns[]);
+  const { t } = useTranslation();
  
  useEffect(() => {
    console.log("inside effect");
@@ -55,28 +58,29 @@ export const AirQualityReportComponent:FC = () => {
         population: eachObj.population
       };
   });
+  console.log("tableColumnData: ",tableColumnData);
 
   setTableData(tableColumnData);
   }
 
     const columns = [
         {
-          title: 'Rank',
+          title: t('rank'),
           dataIndex: 'rank',
           key: 'rank',
         },
         {
-          title: 'Air Quality',
+          title: t('airQuality'),
           dataIndex: 'quality',
           key: 'quality',
         },
         {
-          title: 'Country Capital',
+          title: t('capital'),
           dataIndex: 'capital',
           key: 'capital',
         },
         {
-          title: 'Country Flag',
+          title: t('flag'),
           dataIndex: 'flag',
           key: 'flag',
           // eslint-disable-next-line react/display-name
@@ -85,12 +89,12 @@ export const AirQualityReportComponent:FC = () => {
           }
         },
         {
-          title: 'Country Name',
+          title: t('name'),
           dataIndex: 'countryName',
           key: 'countryName',
         },
         {
-        title: 'Population',
+        title: t('population'),
         dataIndex: 'population',
         key: 'population',
         },
@@ -123,7 +127,7 @@ export const AirQualityReportComponent:FC = () => {
             columns={columns}
             bordered
             scroll={{ y: 'calc(73vh - 4em)' }}
-            title={() => 'Countrywise Air-quality report'}
+            title={() => t('airQualityReport')}
             pagination={{defaultCurrent:1, pageSize: 20,total:100,onChange:(pageNumber) => callPageChange(pageNumber) }}
             rowClassName={(record, index) => "table-row"}
             />

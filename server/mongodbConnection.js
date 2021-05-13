@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 /**
- * Main function that starts to prepare data for the DB
+ * Main function that starts to prepare data for the DB.
  * Country specific and AQI specific REST endpoint
  * will be called to prepare real time data
  */
@@ -108,7 +108,7 @@ function processFinalData(finalDbArr){
         }
     });
 
-    databaseSetUP(finalDbArr.map((eachObj,index) =>({...eachObj,['rank']:index+1}))).catch(console.error);
+    databaseSetUP(finalDbArr.map((eachObj,index) =>({...eachObj,['rank']:index+1})));
 }
 
 
@@ -131,13 +131,13 @@ async function databaseSetUP(finalDbArr){
         if(await isEmptyDB(client)){
             await populateDatabase(client,finalDbArr);
         }else{
-            console.log("DB is not empty");
+            console.log("DB is not empty. First DB would be emptied:-");
             await deleteAllEntires(client,{});
             await populateDatabase(client,finalDbArr);
         }
  
     } catch (e) {
-        console.error(e);
+        console.error("error from databaseSetUP ",e);
     } finally {
         await client.close();
     }
@@ -154,7 +154,7 @@ async function databaseSetUP(finalDbArr){
  */
 
 function createMongoClient(){
-    const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@skhalequ-cluster.cpq7d.mongodb.net/test?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}/test?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, {useUnifiedTopology: true});
     return client;
 }
@@ -167,8 +167,8 @@ function createMongoClient(){
  */
 
 async function isEmptyDB(client){
-    const count = await client.db("airquality_monitorDB")
-    .collection("countryAirqualityData")
+    const count = await client.db(process.env.DB_NAME)
+    .collection(process.env.COLLECTION_NAME)
     .find({})
     .count();
     return count === 0;

@@ -5,6 +5,6 @@ const router = Router();
 
 
   router.get('/home',sendAirqualityData);
-  router.get('/home/[1-5]',sendAirqualityData);
+  router.get('/home/:pageno([1-5])',sendAirqualityData);
 
 export default router;

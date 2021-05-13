@@ -63,5 +63,6 @@ th.ant-table-cell{
   float: right;
   width: 100px;
   justify-content: space-between;
+  cursor: pointer;
 }
 
