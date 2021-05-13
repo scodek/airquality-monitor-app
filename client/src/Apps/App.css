@@ -33,29 +33,31 @@
   justify-content: flex-start;
 }
 
+.ant-table table{
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
 .table-row{
-  font-size: 18px;
+  font-size: 16px;
+  background-color: #fff2e6;
  
 }
 
 .ant-table-title{
   font-size:20px;
   font-weight: bolder;
+  color: #005266;
 }
 
 th.ant-table-cell{
-  color:#004d99 !important;
+  color: #663300 !important;
   font-size: 18px;
-  
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .ant-layout-header{
   height : 85px !important;
   padding-top: 16px;
   font-size: 20px;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .lang-auth-div{

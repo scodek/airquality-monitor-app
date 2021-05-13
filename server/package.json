@@ -5,7 +5,8 @@
   "main": "app-server.js",
   "scripts": {
     "start": "nodemon --exec babel-node app-server.js",
-    "server": "node mongodbConnection.js && npm run start",
+    "mongo": "node ./mongodbConnection.js",
+    "server": "npm run mongo && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd ../airquality-monitor-app-client && npm start"
   },

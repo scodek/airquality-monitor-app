@@ -9,6 +9,7 @@ dotenv.config();
  * will be called to prepare real time data
  */
 
+
 async function prepareData() {
 console.log("Preparing Mongo Database:-");
 

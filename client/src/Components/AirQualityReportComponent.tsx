@@ -14,7 +14,7 @@ export const AirQualityReportComponent:FC = () => {
     const { t } = useTranslation();
  
     useEffect(() => {
-        console.log("inside effect");
+        //console.log("inside effect");
             getInitialData()
                 .then(response => {
                     console.log("response =",response);
