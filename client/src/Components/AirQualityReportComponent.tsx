@@ -10,39 +10,38 @@ import { useTranslation } from 'react-i18next';
 
 export const AirQualityReportComponent:FC = () => {
 
-  const [tableData,setTableData] = useState([] as TableColumns[]);
-  const { t } = useTranslation();
+    const [tableData,setTableData] = useState([] as TableColumns[]);
+    const { t } = useTranslation();
  
- useEffect(() => {
-   console.log("inside effect");
-    getInitialData()
-      .then(response => {
-        console.log("response =",response);
-        if(response.statusText === 'OK'){
-          console.log("response.data= ",response.data);
-          processResponseData(response.data);
-          showNotification('success');
-        }else{
-          throw new Error("data cannot be fetched");
-        }
-      })
-      .catch((err:any) => {
-        console.log("Error: ",err.toString());
-        showNotification('error',err);
-      });
-
-  },[]);
+    useEffect(() => {
+        console.log("inside effect");
+            getInitialData()
+                .then(response => {
+                    console.log("response =",response);
+                    if(response.statusText === 'OK'){
+                        console.log("response.data= ",response.data);
+                        processResponseData(response.data);
+                        showNotification('success');
+                    }else{
+                        throw new Error("data cannot be fetched");
+                    }
+                })
+                .catch((err:any) => {
+                  console.log("Error: ",err.toString());
+                  showNotification('error',err);
+                });
+    },[]);
 
   const showNotification = (notifyType: string, err?:any) =>{
-    console.log('this is called');
-    if(notifyType === 'success'){
-      loadingNotification(AlertEnums.SUCCESS, 'success', "Successfully loaded data");
-    }else if(notifyType === 'error'){
-      const statusEnum = AlertEnums.ERROR;
-      const status= err?.response?.status ? err.response.status: 'Error';
-      const statusText = err?.response?.msg ? err.response.msg : err.toString();
-      loadingNotification(statusEnum, status, statusText);
-    }
+      console.log('this is called');
+      if(notifyType === 'success'){
+        loadingNotification(AlertEnums.SUCCESS, 'success', "Successfully loaded data");
+      }else if(notifyType === 'error'){
+        const statusEnum = AlertEnums.ERROR;
+        const status= err?.response?.status ? err.response.status: 'Error';
+        const statusText = err?.response?.msg ? err.response.msg : err.toString();
+        loadingNotification(statusEnum, status, statusText);
+      }
     
   }
 
@@ -58,7 +57,7 @@ export const AirQualityReportComponent:FC = () => {
         population: eachObj.population
       };
   });
-  console.log("tableColumnData: ",tableColumnData);
+  //console.log("tableColumnData: ",tableColumnData);
 
   setTableData(tableColumnData);
   }
@@ -101,27 +100,26 @@ export const AirQualityReportComponent:FC = () => {
       ];
       
       const callPageChange = (pageNumber:number) => {
-        console.log("page number clicked is:",pageNumber);
-        getPageSpecificData(pageNumber)
-        .then(response => {
-          if(response.statusText === "OK"){
-            processResponseData(response.data);
-            //console.log(response.data);
-            //showNotification('success');
-          }else{
-            throw new Error("data cannot be fetched");
-          }
-        })
-        .catch((err:any) => {
-          console.log(err.toString());
-          showNotification('error',err);
-      });
+          console.log("page number clicked is:",pageNumber);
+          getPageSpecificData(pageNumber)
+          .then(response => {
+              if(response.statusText === "OK"){
+                processResponseData(response.data);
+                //console.log(response.data);
+                //showNotification('success');
+              }else{
+                throw new Error("data cannot be fetched");
+              }
+          })
+          .catch((err:any) => {
+            console.log(err.toString());
+            showNotification('error',err);
+          });
     }
 
       
     return(
         <div style={{height: '73vh'}}>
-        
             <Table
             dataSource={tableData} 
             columns={columns}

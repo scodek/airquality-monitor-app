@@ -56,20 +56,20 @@
     "eslint": "^7.26.0",
     "eslint-plugin-react": "^7.23.2",
     "husky": "^6.0.0",
-    "lint-staged": "^11.0.0",
-    "prettier": "^2.3.0"
+    "lint-staged": "^11.0.0"
+  },
+  "prettier": {
+    "printWidth": 85,
+    "arrowParens": "always",
+    "semi": true,
+    "tabWidth": 2
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": [
-      "eslint --fix"
-    ],
-    "*.{json,md,html}": [
-      "prettier --write"
-    ]
+    "*.{js,ts,tsx}": "eslint --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run format"
+      "pre-commit": "npm run lint"
     }
   }
 }

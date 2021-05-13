@@ -1,8 +1,8 @@
-import {FC} from 'react';
+import React, {FC} from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 
 export const LoginComponent:FC = () => {
-console.log("this is loaded");
+    console.log("this is loaded");
     const layout = {
         labelCol: {
           span: 10,
@@ -75,4 +75,5 @@ console.log("this is loaded");
     </Form>
         </>
     );
-}
+
+  }
