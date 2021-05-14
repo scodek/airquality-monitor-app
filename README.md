@@ -37,7 +37,7 @@ npm install
 ```bash
 \MongoDB\Server\4.4\bin>mongod
 ```
-* when you start it, the database and table(collection) with data(documents) will be automatically created if they don't exist
+* when you start it, after running the nodeJS server code, the database and table(collection) with data(documents) will be automatically created if they don't exist
 ### Usage guide for Server and Client
 #### open two terminals to run react based client and ExpressJS based server separately
 #### Terminal -1
