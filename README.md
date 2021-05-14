@@ -53,8 +53,15 @@ cd client
 npm run client
 ```
 open [http://localhost:3000](http://localhost:3000) to view it in browser
+### Technology used for testing while developing
+* Frontend - React developer tool(Chrome browser extension)
+* Backend - Postman
+* Eslint for debugging
 ## Acknowledgment
 I collected the country and country specific air quality data and the images from this free resources 
 * https://restcountries.eu/
 * https://aqicn.org/json-api/doc/
 * https://unsplash.com/
+## Future extension plan
+* Adding a suitable test framework such as JEST
+* Usage of Next.js framework 
