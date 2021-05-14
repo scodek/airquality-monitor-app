@@ -9,6 +9,10 @@ import {LoginOutlined,LogoutOutlined} from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import i18n from '../i18n/config';
 
+/*Currently all the routes are redirected to this component as the property is passed
+as a true value. After the login implementation, this component will be used only when
+user is logged in */
+
 
 const { Header, Content, Footer } = Layout;
 

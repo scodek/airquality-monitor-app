@@ -11,7 +11,11 @@ dotenv.config();
  */
 
 const sendAirqualityData = async(req, res, next) => {
-    const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}/test?retryWrites=true&w=majority`;
+    //this is the URI for cloud based atlas mongodb. It is activated in main branch
+    //const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}/test?retryWrites=true&w=majority`;
+    
+    //URI for localdatabase for git brach br_for_mongodb_local
+    const uri = `${process.env.DB_LOCAL_SERVER}/${process.env.DB_NAME}`;
     const client = new MongoClient(uri, {useUnifiedTopology: true});
     try {
        let findClause = {};
@@ -26,7 +30,6 @@ const sendAirqualityData = async(req, res, next) => {
                        .collection(process.env.COLLECTION_NAME)
                        .find(findClause).limit(20);
         const returnedData = await cursor.toArray();
-        //console.log("returnedData =",returnedData);
         return res.send(returnedData);
  
     } catch (e) {

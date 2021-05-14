@@ -3,6 +3,8 @@ import {LoginComponent} from '../Components/LoginComponent';
 import { Layout } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 
+/*This functionality is future extension*/
+
 const loginDiv = {};
 
 export const LoginPage:FC = () => {

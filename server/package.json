@@ -5,7 +5,7 @@
   "main": "app-server.js",
   "scripts": {
     "start": "nodemon --exec babel-node app-server.js",
-    "mongo": "node ./mongodbConnection.js",
+    "mongo": "node ./mongoDBLocalConnection.js",
     "server": "npm run mongo && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd ../airquality-monitor-app-client && npm start"
@@ -25,7 +25,8 @@
     "cors": "^2.8.5",
     "dotenv": "^9.0.0",
     "express": "^4.17.1",
-    "mongodb": "^3.6.6"
+    "mongodb": "^3.6.6",
+    "mongoose": "^5.12.9"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
