@@ -11,7 +11,7 @@ dotenv.config();
 
 
 async function prepareData() {
-console.log("Preparing Mongo Database:-");
+console.log("Preparing Mongo Cloud-based Database:-");
 
 restServices.getCountryInfo()
 .then(response => {
