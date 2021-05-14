@@ -52,7 +52,7 @@ npm run server
 cd client
 npm run client
 ```
-
+open [http://localhost:3000](http://localhost:3000) to view it in browser
 ## Acknowledgment
 I collected the country and country specific air quality data and the images from this free resources 
 * https://restcountries.eu/
