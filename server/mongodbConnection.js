@@ -176,7 +176,7 @@ async function isEmptyDB(client){
 }
 
 /**
- * Add two numbers together
+ * delete entries
  * @param  {Object} client client handler object
  * @param  {Object} filter clause for delete
  * @return {Number}      total number of deleted records

@@ -1,8 +1,42 @@
 import React, {FC} from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
+import {Credential} from '../dataModel/userData';
+import { getLoginToken } from '../Services/restService';
+import { AlertEnums } from '../enums/AlertEnums';
+import {loadingNotification} from '../Utils/loadingNotification';
+import { Typography} from 'antd';
 
-export const LoginComponent:FC = () => {
-    console.log("this is loaded");
+
+
+interface propTypes{
+  setUpUserToken(token : string): void;
+}
+
+const LoginComponent:FC<propTypes> = ({setUpUserToken}) => {
+
+  const { Text} = Typography;
+
+    const [loginErr, setLoginErr] = React.useState('');
+    const [userCredential, setUserCredential] = React.useState<Credential>({
+      username: '',
+      password: ''
+    });
+
+    React.useEffect(() => {
+      if(userCredential.password !== ''){
+        getLoginToken(userCredential)
+      .then((res:any) => {console.log('token =',res);setUpUserToken(res.data.token)})
+      .catch(err => {
+        setLoginErr('username or password invalid');
+        const statusEnum = AlertEnums.ERROR;
+        const status= err?.response?.status ? err.response.status: 'Error';
+        const statusText = err?.response?.msg ? err.response.msg : err.toString();
+        loadingNotification(statusEnum, status, statusText);
+      });
+      }
+      
+    },[userCredential]);
+
     const layout = {
         labelCol: {
           span: 10,
@@ -18,8 +52,8 @@ export const LoginComponent:FC = () => {
         },
       };
 
-      const onFinish = (values: any) => {
-        console.log('Success:', values);
+      const onFinish = (userInput: any) => {
+        setUserCredential(Object.assign({}, {username: userInput['username'],password: userInput['password']}));
       };
     
       const onFinishFailed = (errorInfo: any) => {
@@ -63,17 +97,19 @@ export const LoginComponent:FC = () => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
       </Form.Item>
+      <div style={{textAlign:'center'}}>
+        <Text style={{color:'#991f00', fontWeight:'bold',fontSize:'20px'}}>{loginErr}</Text>
+      </div>
+     
     </Form>
         </>
     );
 
   }
+
+  export default LoginComponent;

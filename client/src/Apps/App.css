@@ -68,3 +68,15 @@ th.ant-table-cell{
   cursor: pointer;
 }
 
+.page-not-found{
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-form-item-label{
+  color: white;
+}
+

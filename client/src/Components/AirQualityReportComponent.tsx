@@ -17,9 +17,9 @@ export const AirQualityReportComponent:FC = () => {
         //console.log("inside effect");
             getInitialData()
                 .then(response => {
-                    console.log("response =",response);
+                    //console.log("response =",response);
                     if(response.statusText === 'OK'){
-                        console.log("response.data= ",response.data);
+                        //console.log("response.data= ",response.data);
                         processResponseData(response.data);
                         showNotification('success');
                     }else{
@@ -27,15 +27,15 @@ export const AirQualityReportComponent:FC = () => {
                     }
                 })
                 .catch((err:any) => {
-                  console.log("Error: ",err.toString());
+                  //console.log("Error: ",err.toString());
                   showNotification('error',err);
                 });
     },[]);
 
   const showNotification = (notifyType: string, err?:any) =>{
-      console.log('this is called');
+     // console.log('this is called');
       if(notifyType === 'success'){
-        loadingNotification(AlertEnums.SUCCESS, 'success', "Successfully loaded data");
+        //loadingNotification(AlertEnums.SUCCESS, 'success', "Successfully loaded data");
       }else if(notifyType === 'error'){
         const statusEnum = AlertEnums.ERROR;
         const status= err?.response?.status ? err.response.status: 'Error';
@@ -100,7 +100,7 @@ export const AirQualityReportComponent:FC = () => {
       ];
       
       const callPageChange = (pageNumber:number) => {
-          console.log("page number clicked is:",pageNumber);
+          //console.log("page number clicked is:",pageNumber);
           getPageSpecificData(pageNumber)
           .then(response => {
               if(response.statusText === "OK"){
@@ -112,7 +112,7 @@ export const AirQualityReportComponent:FC = () => {
               }
           })
           .catch((err:any) => {
-            console.log(err.toString());
+            //console.log(err.toString());
             showNotification('error',err);
           });
     }

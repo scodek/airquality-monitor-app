@@ -3,6 +3,7 @@ import {AirQualityReportComponent} from '../Components/AirQualityReportComponent
 
 const HomePage:FC = () => {
   
+    console.log("home page loaded");
     return(
           <AirQualityReportComponent/>
     );

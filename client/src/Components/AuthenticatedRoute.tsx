@@ -1,8 +1,9 @@
 import React, {FC, useState} from 'react';
 import { Layout, Menu} from 'antd';
-import {Link, Route,Redirect} from "react-router-dom";
+import {Link, Route,Redirect, Switch} from "react-router-dom";
 import HomePage from '../Pages/HomePage';
 import AboutPage from '../Pages/AboutPage';
+import ErrorPage from '../Pages/ErrorPage';
 import germany from '../images/germany.png';
 import us from '../images/us.png';
 import {LoginOutlined,LogoutOutlined} from '@ant-design/icons';
@@ -12,7 +13,7 @@ import i18n from '../i18n/config';
 
 const { Header, Content, Footer } = Layout;
 
-export const AuthenticatedRoute:FC<{isAuthenticated : boolean}> = ({isAuthenticated}) => {
+export const AuthenticatedRoute:FC<{userToken : string,setUserToken(token: string):void}> = ({userToken,setUserToken}) => {
     const { t } = useTranslation();
     const langOptions = {
       us: 'us',
@@ -27,6 +28,13 @@ export const AuthenticatedRoute:FC<{isAuthenticated : boolean}> = ({isAuthentica
 
   const changeLangTo = (currLanguage: string) => (currLanguage === langOptions.us? langOptions.de: langOptions.us);
 
+  const userLoggingHandle = () => {
+    console.log("logout");
+    if(userToken){
+      sessionStorage.setItem('token','');
+      setUserToken('');
+    }
+  }
     return(
         <Layout className="layout" style={{height:"100vh"}}>
             <Header style={{height:'100px'}}>
@@ -37,9 +45,9 @@ export const AuthenticatedRoute:FC<{isAuthenticated : boolean}> = ({isAuthentica
                             <div onClick={() => onLanguageChange()}> 
                               <img src={currLanguage === langOptions.us ? us: germany} width="40" height="25" alt="image"/>
                             </div>
-                            <div onClick={() => console.log("this has to implemented")}>
+                            <div onClick={() => userLoggingHandle()}>
                               {
-                                isAuthenticated ? 
+                                userToken != '' ? 
                                   <LoginOutlined style={{ fontSize: '200%'}}/>
                                 : <LogoutOutlined style={{ fontSize: '200%'}}/>
                               }
@@ -49,17 +57,12 @@ export const AuthenticatedRoute:FC<{isAuthenticated : boolean}> = ({isAuthentica
             </Header>
             <Content style={{ padding: '20px 50px' }}>
                 <div className="site-layout-content">
-                    <Route path="/home" component={HomePage} exact/>
-                    <Route path="/about" component={AboutPage} exact/>
-                    <Route
-                      exact
-                      path="/"
-                      render={() => {
-                          return (
-                          <Redirect to="/home" /> 
-                          )
-                      }}
-                    />
+                  <Switch>
+                      <Route path="/home" component={HomePage} exact/>
+                      <Route path="/about" component={AboutPage} exact/>
+                      <Route path="/" component={HomePage} exact/> 
+                      <Route path="*" component={ErrorPage}/> 
+                  </Switch>
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>Created by ©Skahleque 2021</Footer>
